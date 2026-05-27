@@ -1,0 +1,173 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+
+  --color-cred-bg: #050508;
+  --color-cred-bg-elevated: #0d0d12;
+  --color-cred-text: #f5f5f7;
+  --color-cred-muted: #8e8e9c;
+  --color-cred-accent: #e01cd5;
+  --color-cred-accent-secondary: #7b2ff7;
+  --color-cred-gold: #f5c542;
+  --color-cred-cyan: #00f2fe;
+}
+
+:root {
+  --bg-primary: #050508;
+  --bg-elevated: #0d0d12;
+  --text-primary: #f5f5f7;
+  --text-muted: #8e8e9c;
+  --accent-magenta: #e01cd5;
+  --accent-purple: #7b2ff7;
+  --accent-gold: #f5c542;
+  --accent-cyan: #00f2fe;
+  --neopop-shadow: 6px 6px 0 #000;
+  --neopop-shadow-lg: 10px 10px 0 #000;
+  --neopop-shadow-active: 2px 2px 0 #000;
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-cred-bg font-body text-cred-text antialiased;
+    background: radial-gradient(circle at 50% 0%, #0d0d18 0%, #050508 100%);
+    overflow-x: hidden;
+  }
+
+  #root {
+    @apply min-h-screen w-full relative;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050508;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1a1a26;
+    border-radius: 4px;
+    border: 2px solid #050508;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7b2ff7;
+  }
+}
+
+/* Custom background animation keys */
+@keyframes drift {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes pulse-radar {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(224, 28, 213, 0.2), 0 0 20px rgba(123, 47, 247, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(224, 28, 213, 0.4), 0 0 35px rgba(123, 47, 247, 0.3);
+  }
+}
+
+.animate-drift-slow {
+  animation: drift 15s infinite ease-in-out;
+}
+
+.animate-drift-slow-reverse {
+  animation: drift 18s infinite ease-in-out reverse;
+}
+
+.animate-radar {
+  animation: pulse-radar 3s infinite cubic-bezier(0.25, 0, 0, 1);
+}
+
+.text-glow-premium {
+  animation: text-glow 4s infinite ease-in-out;
+}
+
+/* Glassmorphism style helper */
+.glass-glow {
+  position: relative;
+}
+
+.glass-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02), rgba(224, 28, 213, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Card Flip 3D Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Sparkle & Glow Utilities */
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 25px rgba(224, 28, 213, 0.35);
+}
+
+.glow-gold {
+  box-shadow: 0 0 25px rgba(245, 197, 66, 0.35);
+}
+
+/* Hide default cursor on scratchcard if drawing */
+.cursor-scratch {
+  cursor: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.1) 11%), auto;
+}
+
